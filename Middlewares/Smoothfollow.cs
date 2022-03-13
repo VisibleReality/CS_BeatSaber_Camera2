@@ -11,6 +11,9 @@ namespace Camera2.Configuration {
 		public float rotation = 4f;
 
 		public bool forceUpright = false;
+		public bool lockPitch = false;
+		public bool lockYaw = false;
+
 		public bool followReplayPosition = true;
 
 		private bool _pivotingOffset = true;
@@ -141,7 +144,22 @@ namespace Camera2.Middlewares {
 			if(settings.Smoothfollow.forceUpright)
 				targetRotation *= Quaternion.Euler(0, 0, -parentToUse.transform.localEulerAngles.z);
 
-			if(!teleportOnNextFrame) {
+			if(settings.Smoothfollow.lockPitch)
+				targetRotation *= Quaternion.Euler(-parentToUse.transform.localEulerAngles.x, 0, 0);
+
+			if (settings.Smoothfollow.lockYaw) {
+				// Only offset yaw based on room adjust when not in replays
+				if (settings.type == Configuration.CameraType.FirstPerson && !isAttachedToReplayCam)
+				{
+					targetRotation *= Quaternion.Euler(0, -parentToUse.transform.localEulerAngles.y - HookRoomAdjust.rotation.eulerAngles.y, 0);
+				}
+				else
+				{
+					targetRotation *= Quaternion.Euler(0, -parentToUse.transform.localEulerAngles.y, 0);
+				}
+			}
+
+			if (!teleportOnNextFrame) {
 				teleportOnNextFrame =
 					lastScene != SceneUtil.currentScene ||
 					(HookFPFCToggle.isInFPFC && (!settings.Smoothfollow.followReplayPosition || !ScoresaberUtil.isInReplay));

@@ -204,6 +204,14 @@ namespace Camera2.UI {
 		internal bool smoothFollow_forceUpright {
 			get => cam.settings.Smoothfollow.forceUpright; set { cam.settings.Smoothfollow.forceUpright = value; }
 		}
+		internal bool smoothFollow_lockPitch
+		{
+			get => cam.settings.Smoothfollow.lockPitch; set { cam.settings.Smoothfollow.lockPitch = value; }
+		}
+		internal bool smoothFollow_lockYaw
+		{
+			get => cam.settings.Smoothfollow.lockYaw; set { cam.settings.Smoothfollow.lockYaw = value; }
+		}
 		internal bool smoothFollow_followReplayPosition {
 			get => cam.settings.Smoothfollow.followReplayPosition; set { cam.settings.Smoothfollow.followReplayPosition = value; }
 		}

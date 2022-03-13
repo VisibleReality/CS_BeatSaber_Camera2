@@ -56,6 +56,12 @@
 				<checkbox text='Force Upright' value='smoothFollow_forceUpright' bind-value='true' apply-on-change='true' 
 						  hover-hint='Ignores / prevents sideways rotation of the camera'
 				/>
+				<checkbox text='Lock Pitch' value='smoothFollow_lockPitch' bind-value='true' apply-on-change='true'
+						  hover-hint='Ignores / prevents up/down rotation of the camera'
+				/>
+				<checkbox text='Lock Yaw' value='smoothFollow_lockYaw' bind-value='true' apply-on-change='true'
+						  hover-hint='Ignores / prevents left/right rotation of the camera'
+				/>
 				<checkbox text='Follow Replay Position' value='smoothFollow_followReplayPosition' bind-value='true' apply-on-change='true'
 						  hover-hint='When watching a replay follow the Replay head position instead of the current HMD one'
 				/>
